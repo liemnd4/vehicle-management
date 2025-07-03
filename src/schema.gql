@@ -1,0 +1,100 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type VehicleType {
+  _id: String!
+  type: String!
+  brand: String
+  model: String
+  licensePlate: String!
+  color: String
+  status: String!
+}
+
+type DriverType {
+  _id: ID!
+  name: String!
+  phone: String!
+  email: String
+  status: String!
+}
+
+type DocumentType {
+  _id: ID!
+  vehicleId: VehicleType!
+  type: String!
+  documentUrl: String!
+  expiryDate: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  findAllVehicles: [VehicleType!]!
+  findVehicleById(id: String!): VehicleType!
+  findAllDrivers: [DriverType!]!
+  findDriverById(id: String!): DriverType!
+  findAllDocuments: [DocumentType!]!
+  findDocumentById(id: String!): DocumentType!
+  findExpiredDocuments: [DocumentType!]!
+}
+
+type Mutation {
+  createVehicle(input: CreateVehicleInput!): VehicleType!
+  updateVehicle(id: String!, input: UpdateVehicleInput!): VehicleType!
+  deleteVehicle(id: String!): VehicleType!
+  createDriver(input: CreateDriverInput!): DriverType!
+  updateDriver(id: String!, input: UpdateDriverInput!): DriverType!
+  deleteDriver(id: String!): DriverType!
+  createDocument(input: CreateDocumentInput!): DocumentType!
+  updateDocument(id: String!, input: UpdateDocumentInput!): DocumentType!
+  deleteDocument(id: String!): DocumentType!
+}
+
+input CreateVehicleInput {
+  type: String!
+  brand: String
+  model: String
+  licensePlate: String!
+  color: String
+}
+
+input UpdateVehicleInput {
+  type: String
+  brand: String
+  model: String
+  licensePlate: String
+  color: String
+  status: String
+}
+
+input CreateDriverInput {
+  name: String!
+  phone: String!
+  email: String
+}
+
+input UpdateDriverInput {
+  name: String
+  phone: String
+  email: String
+  status: String
+}
+
+input CreateDocumentInput {
+  vehicleId: ID!
+  type: String!
+  documentUrl: String!
+  expiryDate: String!
+}
+
+input UpdateDocumentInput {
+  vehicleId: ID
+  type: String
+  documentUrl: String
+  expiryDate: String
+}
